@@ -19,4 +19,9 @@ public class DynamoDbAdapter : IAdapter {
     {
         return _context.LoadAsync<AccountDataModel>(accountId, name);
     }
+
+    public void CreateAccountAsync(AccountDataModel account)
+    {
+        _context.SaveAsync<AccountDataModel>(account);
+    }
 }

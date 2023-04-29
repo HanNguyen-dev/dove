@@ -15,4 +15,14 @@ public class Mapper {
         };
     }
 
+    public static AccountDataModel mapAccount(AccountDetails account)
+    {
+        return new AccountDataModel
+        {
+            AccountId = account.AccountId,
+            Name = account.Name,
+            Email = account.Email,
+        };
+    }
+
 }

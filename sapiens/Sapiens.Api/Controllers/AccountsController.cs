@@ -19,20 +19,27 @@ public class AccountsController : ControllerBase
     }
 
     [HttpPost(Name = "PostAccount")]
-    public AccountDetails Post()
+    public string PostAccount([FromBody] AccountDetails request)
     {
-        return new AccountDetails
-        {
-            AccountId = "1239083",
-            Name = "Han",
-            Email = "11231@mga.com",
-        };
+        _repository.CreateAccount(request);
+        return "Your request has been successfully processed.";
     }
 
     [HttpGet("{accountId}/{name}")]
-    public Task<AccountDetails> GetAccountDetails(string accountId, string name)
+    public async Task<ActionResult<AccountDetails>> GetAccountDetails(string accountId, string name)
     {
-        return _repository.GetAccount(accountId, name);
+        try
+        {
+            _logger.LogInformation("Get Account");
+            var account = await _repository.GetAccount(accountId, name);
+            return Ok(account);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e.StackTrace);
+            return NotFound(e.Message);
+        }
+
     }
 
 }

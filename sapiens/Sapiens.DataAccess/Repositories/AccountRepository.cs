@@ -22,5 +22,6 @@ public class AccountRepository : IRepository
 
     public void CreateAccount(AccountDetails accountDetails)
     {
+        _adapter.CreateAccountAsync(Mapper.mapAccount(accountDetails));
     }
 }
