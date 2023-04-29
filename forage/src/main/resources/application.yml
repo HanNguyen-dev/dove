@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${HOST_NAME:localhost}:3306/jobs
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
