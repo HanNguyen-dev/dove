@@ -41,6 +41,43 @@ public class JobService implements IJobService {
         return null;
     }
 
+    public Integer updateJob(JobRequest jobRequest) {
+        JobEntity jobEntity = repository.findById(jobRequest.getJobId())
+                                        .orElse(null);
+
+        if (jobEntity != null) {
+            // check whether to update the company
+
+            if (jobEntity.getCompany().getCompanyId() != jobRequest.getCompanyId()) {
+                CompanyEntity companyEntity = companyRepository.findById(jobRequest.getCompanyId())
+                                                               .orElse(null);
+                if (companyEntity == null) {
+                    return null;
+                }
+                jobEntity.setCompany(companyEntity);
+            }
+
+            JobEntity updatedJobEntity = convertJob(jobEntity, jobRequest);
+            JobEntity result = repository.save(updatedJobEntity);
+            return result.getJobId();
+        }
+
+        return null;
+    }
+
+    private JobEntity convertJob(JobEntity jobEntity, JobRequest jobRequest) {
+        jobEntity.setTitle(jobRequest.getTitle());
+        jobEntity.setFrontend(jobRequest.getFrontend());
+        jobEntity.setBackend(jobRequest.getBackend());
+        jobEntity.setStoreDb(jobRequest.getStoreDb());
+        jobEntity.setCloud(jobRequest.getCloud());
+        jobEntity.setLanguages(jobRequest.getLanguages());
+        jobEntity.setExperience(jobRequest.getExperience());
+        jobEntity.setUrl(jobRequest.getUrl());
+
+        return jobEntity;
+    }
+
     private JobEntity convertJob(JobRequest jobRequest, CompanyEntity companyEntity) {
         JobEntity entity = new JobEntity();
 
@@ -68,6 +105,8 @@ public class JobService implements IJobService {
                 .languages(jobEntity.getLanguages())
                 .experience(jobEntity.getExperience())
                 .url(jobEntity.getUrl())
+                .appliedDate(jobEntity.getAppliedDate())
+                .status(jobEntity.getStatus())
                 .companyName(jobEntity.getCompany().getName())
                 .build();
     }

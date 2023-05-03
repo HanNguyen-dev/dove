@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class JobRequest {
 
+    private Integer jobId;
+
     private String title;
 
     private String frontend;

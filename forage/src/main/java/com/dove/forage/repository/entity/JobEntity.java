@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -36,6 +37,10 @@ public class JobEntity {
     private String experience;
 
     private String url;
+
+    private String status;
+
+    private Date appliedDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id", referencedColumnName = "companyId")

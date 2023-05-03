@@ -2,6 +2,7 @@ package com.dove.forage.domain.models;
 
 import lombok.Builder;
 import lombok.Data;
+import java.sql.Date;
 
 @Data
 @Builder
@@ -22,6 +23,10 @@ public class Job {
     private String languages;
 
     private String experience;
+
+    private Date appliedDate;
+
+    private String status;
 
     private String companyName;
 

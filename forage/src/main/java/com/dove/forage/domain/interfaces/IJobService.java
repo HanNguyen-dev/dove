@@ -9,4 +9,6 @@ public interface IJobService {
 
     Integer createJob(JobRequest jobRequest);
 
+    Integer updateJob(JobRequest jobRequest);
+
 }
