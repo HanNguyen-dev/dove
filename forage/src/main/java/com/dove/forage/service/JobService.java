@@ -8,6 +8,7 @@ import com.dove.forage.repository.JobRepository;
 import com.dove.forage.repository.entity.CompanyEntity;
 import com.dove.forage.repository.entity.JobEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,8 +24,9 @@ public class JobService implements IJobService {
     private CompanyRepository companyRepository;
 
     public Iterable<Job> getJobs() {
-        return StreamSupport
-                .stream(repository.findAll().spliterator(), false)
+        return repository
+                .findAll(Sort.by(Sort.Direction.DESC,"appliedDate"))
+                .stream()
                 .map(this::convertJob)
                 .collect(Collectors.toList());
     }
