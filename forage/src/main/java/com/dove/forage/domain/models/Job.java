@@ -26,6 +26,8 @@ public class Job {
 
     private Date appliedDate;
 
+    private Date completedDate;
+
     private String status;
 
     private String companyName;

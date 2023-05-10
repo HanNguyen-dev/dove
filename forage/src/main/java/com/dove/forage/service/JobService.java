@@ -108,6 +108,7 @@ public class JobService implements IJobService {
                 .experience(jobEntity.getExperience())
                 .url(jobEntity.getUrl())
                 .appliedDate(jobEntity.getAppliedDate())
+                .completedDate(jobEntity.getCompletedDate())
                 .status(jobEntity.getStatus())
                 .companyName(jobEntity.getCompany().getName())
                 .build();

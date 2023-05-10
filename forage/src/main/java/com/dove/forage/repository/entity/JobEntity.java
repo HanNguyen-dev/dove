@@ -42,6 +42,8 @@ public class JobEntity {
 
     private Date appliedDate;
 
+    private Date completedDate;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id", referencedColumnName = "companyId")
     private CompanyEntity company;
