@@ -1,6 +1,7 @@
 package com.dove.forage.controller;
 
 import com.dove.forage.domain.interfaces.ICompanyService;
+import com.dove.forage.domain.models.Company;
 import com.dove.forage.domain.models.CompanyRequest;
 import com.dove.forage.repository.entity.CompanyEntity;
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class CompanyController {
     }
 
     @GetMapping()
-    public Iterable<CompanyEntity> getCompanies() {
+    public Iterable<Company> getCompanies() {
         return service.getCompanies();
     }
 

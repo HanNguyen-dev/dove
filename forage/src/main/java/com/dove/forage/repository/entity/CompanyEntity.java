@@ -2,6 +2,9 @@ package com.dove.forage.repository.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +25,10 @@ public class CompanyEntity {
 
     private String headquarter;
 
-    private Integer industryId;
+//    private Integer industryId;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "industry_id", referencedColumnName = "industryId")
+    private IndustryEntity industry;
 
 }
