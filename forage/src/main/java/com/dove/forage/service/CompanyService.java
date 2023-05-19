@@ -55,6 +55,7 @@ public class CompanyService implements ICompanyService {
     private Company convertCompany(CompanyEntity entity) {
         return Company
                 .builder()
+                .companyId(entity.getCompanyId())
                 .name(entity.getName())
                 .headquarter(entity.getHeadquarter())
                 .industry(entity.getIndustry().getName())
