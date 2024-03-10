@@ -39,4 +39,4 @@ test {
 	finalizedBy jacocoTestReport
 }
 
-jib.to.image = 'gcr.io/com.dove.forage/image-built-with-jib'
+jib.to.image = 'com.dove/forage2/image-built-with-jib'
