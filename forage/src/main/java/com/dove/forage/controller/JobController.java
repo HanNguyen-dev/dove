@@ -3,6 +3,8 @@ package com.dove.forage.controller;
 import com.dove.forage.domain.interfaces.IJobService;
 import com.dove.forage.domain.models.Job;
 import com.dove.forage.domain.models.JobRequest;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +27,9 @@ public class JobController {
     }
 
     @GetMapping()
-    public Iterable<Job> getJobs() {
-        return service.getJobs();
+    public ResponseEntity<Iterable<Job>> getJobs(HttpServletResponse response) {
+        response.addCookie(new Cookie("example-cookie-key", "example-cookie-value"));
+        return ResponseEntity.status(HttpStatus.OK).body(service.getJobs());
     }
 
     @PostMapping()
