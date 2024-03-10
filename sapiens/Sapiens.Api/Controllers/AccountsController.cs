@@ -19,9 +19,21 @@ public class AccountsController : ControllerBase
     }
 
     [HttpPost(Name = "PostAccount")]
-    public string PostAccount([FromBody] AccountDetails request)
+    public ActionResult<string> PostAccount([FromBody] AccountDetails request)
     {
-        _repository.CreateAccount(request);
+        try
+        {
+            // _repository.CreateAccount(request);
+            Console.Write(nameof(GetAccountDetails));
+            // return CreatedAtAction(nameof(GetAccountDetails), request);
+            // Ok("hello");
+
+        }
+        catch (Exception e)
+        {
+            NotFound(e.Message);
+        }
+
         return "Your request has been successfully processed.";
     }
 
