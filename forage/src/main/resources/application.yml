@@ -6,8 +6,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:mysql://${HOST_NAME:localhost}:3306/jobs
+    url: jdbc:postgresql://${HOST_NAME:localhost}:5432/jobs
     username: user
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
